@@ -4,8 +4,8 @@ import hu.misi.feladat.core.exceptions.*;
 public class UserTests {
     User user;
     @Before
-    public void Init(){
-        user = new User();
+    public void Init() throws InvalidUsernameException, InvalidEmailException, InvalidPassword, InvalidRealnameException {
+        user = new User(1,"kiscica","Feladat2020#","Pekár Mihály","mpekar55@gmail.com",Role.admin);
     }
     @Test
     public void ValidPassowrdUser() throws InvalidPassword {
@@ -91,4 +91,21 @@ public class UserTests {
     public void NoSpaceRealName() throws InvalidRealnameException {
         user.setRealname("MeowMeow");
     }
+    @Test()
+    public void ValidEmail() throws InvalidEmailException {
+        user.setEmail("mpekar55@gmail.com");
+    }
+    @Test(expected = InvalidEmailException.class)
+    public void EmptyEmail() throws InvalidEmailException {
+        user.setEmail("");
+    }
+    @Test(expected = InvalidEmailException.class)
+    public void NullEmail() throws InvalidEmailException {
+        user.setEmail(null);
+    }
+    @Test(expected = InvalidEmailException.class)
+    public void NoAtSymbolEmail() throws InvalidEmailException {
+        user.setEmail("mpekar55gmail.com");
+    }
+
 }

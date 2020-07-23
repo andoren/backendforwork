@@ -8,13 +8,14 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String username, String realname, String email,  Role role )throws InvalidUsernameException, InvalidRealnameException {
+    public User(Integer id, String username, String realname, String email,  Role role ) throws InvalidUsernameException, InvalidRealnameException, InvalidEmailException {
         setId(id);
         setRealname(realname);
         setRole(role);
         setUsername(username);
+        setEmail(email);
     }
-    public User(Integer id, String username, String password,String realname, String email,  Role role  ) throws InvalidPassword, InvalidRealnameException,InvalidUsernameException {
+    public User(Integer id, String username, String password,String realname, String email,  Role role  ) throws InvalidPassword, InvalidRealnameException, InvalidUsernameException, InvalidEmailException {
         this(id,username,realname,email,role);
         setPassword(password);
 
@@ -30,7 +31,12 @@ public class User {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email) throws InvalidEmailException {
+        if (email == null) throw new InvalidEmailException("Email cannot be null.");
+        String regex ="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
+        Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+        boolean isMatched = Pattern.matches(regex,email);
+        if(!isMatched) throw new InvalidEmailException("Invaild e-mail.");
         this.email = email;
     }
 
@@ -61,6 +67,7 @@ public class User {
     }
 
     public void setPassword(String password) throws InvalidPassword {
+        if (password==null) throw  new InvalidPassword("Password cannot be null.");
         String regex = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{6,20}";
         Pattern pattern = Pattern.compile(regex);
         boolean isMatched = Pattern.matches(regex, password);
