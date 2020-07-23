@@ -4,18 +4,32 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String password, String realname, Role role, String username) {
-        this.id = id;
-        this.password = password;
-        this.realname = realname;
-        this.role = role;
-        this.username = username;
+    public User(Integer id, String username, String realname, String email,  Role role ) {
+        setId(id);
+        setRealname(realname);
+        setRole(role);
+        setUsername(username);
+    }
+    public User(Integer id, String username, String password,String realname, String email,  Role role  ) {
+        this(id,username,realname,email,role);
+        setPassword(password);
+
     }
 
     private Integer id;
     private String password;
     private String realname;
     private Role role;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    private String email;
     public Integer getId() {
         return id;
     }
