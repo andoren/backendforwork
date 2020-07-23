@@ -8,13 +8,13 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String username, String realname, String email,  Role role )throws InvalidUsernameException {
+    public User(Integer id, String username, String realname, String email,  Role role )throws InvalidUsernameException, InvalidRealnameException {
         setId(id);
         setRealname(realname);
         setRole(role);
         setUsername(username);
     }
-    public User(Integer id, String username, String password,String realname, String email,  Role role  ) throws InvalidPassword, InvalidUsernameException {
+    public User(Integer id, String username, String password,String realname, String email,  Role role  ) throws InvalidPassword, InvalidRealnameException,InvalidUsernameException {
         this(id,username,realname,email,role);
         setPassword(password);
 
@@ -72,7 +72,11 @@ public class User {
         return realname;
     }
 
-    public void setRealname(String realname) {
+    public void setRealname(String realname) throws InvalidRealnameException {
+        if(realname == null )throw new InvalidRealnameException("Realname cannot be null.");
+        else if (realname.length() < 4) throw new InvalidRealnameException("Realname is too short.");
+        else if (realname.length() > 50)throw new InvalidRealnameException("Realname is too long.");
+        else if (!realname.contains(" "))throw new InvalidRealnameException("Realname does not contains space");
         this.realname = realname;
     }
 

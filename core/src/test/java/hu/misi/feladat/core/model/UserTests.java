@@ -67,4 +67,28 @@ public class UserTests {
     public void FourLongUsername() throws InvalidUsernameException {
         user.setUsername("aaaa");
     }
+    @Test
+    public void ValidRealName() throws InvalidRealnameException {
+        user.setRealname("Pekár Mihály");
+    }
+    @Test(expected = InvalidRealnameException.class)
+    public void EmptyRealName() throws InvalidRealnameException {
+        user.setRealname("");
+    }
+    @Test(expected = InvalidRealnameException.class)
+    public void NullRealName() throws InvalidRealnameException {
+        user.setRealname(null);
+    }
+    @Test(expected = InvalidRealnameException.class)
+    public void ShortRealName() throws InvalidRealnameException {
+        user.setRealname("1234");
+    }
+    @Test(expected = InvalidRealnameException.class)
+    public void LongRealName() throws InvalidRealnameException {
+        user.setRealname("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    }
+    @Test(expected = InvalidRealnameException.class)
+    public void NoSpaceRealName() throws InvalidRealnameException {
+        user.setRealname("MeowMeow");
+    }
 }
