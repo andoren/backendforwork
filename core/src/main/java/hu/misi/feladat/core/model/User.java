@@ -8,13 +8,13 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String username, String realname, String email,  Role role ) {
+    public User(Integer id, String username, String realname, String email,  Role role )throws InvalidUsernameException {
         setId(id);
         setRealname(realname);
         setRole(role);
         setUsername(username);
     }
-    public User(Integer id, String username, String password,String realname, String email,  Role role  ) throws InvalidPassword {
+    public User(Integer id, String username, String password,String realname, String email,  Role role  ) throws InvalidPassword, InvalidUsernameException {
         this(id,username,realname,email,role);
         setPassword(password);
 
@@ -24,6 +24,7 @@ public class User {
     private String password;
     private String realname;
     private Role role;
+    private String email;
 
     public String getEmail() {
         return email;
@@ -33,7 +34,6 @@ public class User {
         this.email = email;
     }
 
-    private String email;
     public Integer getId() {
         return id;
     }
@@ -49,7 +49,10 @@ public class User {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(String username) throws InvalidUsernameException {
+        if(username == null) throw  new InvalidUsernameException("The username cannot be null.");
+        else if(username.length() < 5) throw  new InvalidUsernameException("The username must be atleast 5 length long.");
+        else if (username.length() >20)throw  new InvalidUsernameException("The username cannot be longer than 20 char.");
         this.username = username;
     }
 

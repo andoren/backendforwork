@@ -39,4 +39,32 @@ public class UserTests {
     public void HasTab() throws InvalidPassword{
         user.setPassword("Feladat   2020#");
     }
+    @Test
+    public void ValidUsername() throws InvalidUsernameException {
+        user.setUsername("kiscica");
+    }
+    @Test(expected = InvalidUsernameException.class)
+    public void EmptyUsername() throws InvalidUsernameException {
+        user.setUsername("");
+    }
+    @Test(expected = InvalidUsernameException.class)
+    public void NullUsername() throws InvalidUsernameException {
+        user.setUsername(null);
+    }
+    @Test(expected = InvalidUsernameException.class)
+    public void TooLongUsername() throws InvalidUsernameException {
+        user.setUsername("aaaaaaaaaaaaaaaaaaaaa");
+    }
+    @Test
+    public void TwentyLongUsername() throws InvalidUsernameException {
+        user.setUsername("aaaaaaaaaaaaaaaaaaaa");
+    }
+    @Test
+    public void FiveLongUsername() throws InvalidUsernameException {
+        user.setUsername("aaaaa");
+    }
+    @Test(expected = InvalidUsernameException.class)
+    public void FourLongUsername() throws InvalidUsernameException {
+        user.setUsername("aaaa");
+    }
 }
