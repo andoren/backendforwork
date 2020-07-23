@@ -8,7 +8,8 @@ import java.util.Collection;
 public interface IUserService {
     Collection<User> getAllUsers();
     Collection<User> getUsersByRole(Role role);
-    boolean ModifyUser(User user);
-    User AddUser(User user);
-    boolean DeleteUser(User user);
+    boolean modifyUser(User user);
+    User getUserById(int id);
+    User addUser(User user);
+    boolean deleteUserById(int id);
 }
