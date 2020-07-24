@@ -8,6 +8,7 @@ import java.util.Collection;
 public interface ProductDao {
     Collection<Product> getProducts();
     Collection<Product> getProductsByUserId(User user);
+    Collection<Product> getNotAuthorizedProducts();
     Product getProductById(int id);
     Product addProduct(Product newProduct, int userId);
     boolean modifyProduct(Product product);

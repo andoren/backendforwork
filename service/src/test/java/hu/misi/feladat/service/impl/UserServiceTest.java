@@ -5,18 +5,13 @@ import hu.misi.feladat.core.exceptions.InvalidRealnameException;
 import hu.misi.feladat.core.exceptions.InvalidUsernameException;
 import hu.misi.feladat.core.model.User;
 import hu.misi.feladat.service.dao.UserDao;
-import hu.misi.feladat.service.impl.UserService;
 import org.easymock.EasyMock;
-import org.easymock.IAnswer;
 import org.easymock.Mock;
 import org.easymock.TestSubject;
 import org.junit.*;
 import hu.misi.feladat.core.model.Role;
-import org.junit.matchers.JUnitMatchers;
-
 import java.util.Arrays;
 import java.util.Collection;
-import static org.easymock.EasyMock.expectLastCall;
 import static org.easymock.EasyMock.same;
 public class UserServiceTest {
     @Mock
