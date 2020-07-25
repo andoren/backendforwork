@@ -4,6 +4,11 @@ import java.util.regex.Pattern;
 import hu.misi.feladat.core.exceptions.*;
 
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name="Product")
 public class Product {
     public Product() {
 
@@ -25,15 +30,38 @@ public class Product {
         setCreated_date(created_date);
         setSold_date(sold_date);
     }
-
+    @Id
+    @GeneratedValue
     private Integer id;
+    @Column(name = "name")
     private String name;
+    @Column(name="description")
     private String description;
+    @Column(name="price")
     private Integer price;
+    @Column(name="issold")
     private Boolean issold;
+    @Column(name="isaccapted")
     private Boolean isaccapted;
+    @Column(name = "imagepath")
     private String imagepath;
+
+    public User getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(User buyer) {
+        this.buyer = buyer;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User owner;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "buyer")
+    private User buyer;
+    @Column(name = "created_date")
     private LocalDate created_date;
+    @Column(name = "sold_date")
     private LocalDate sold_date;
 
     public String getImagepath() {

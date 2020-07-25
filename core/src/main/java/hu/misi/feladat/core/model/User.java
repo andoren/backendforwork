@@ -1,9 +1,12 @@
 package hu.misi.feladat.core.model;
 
 import hu.misi.feladat.core.exceptions.*;
-
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
-
+@Entity
+@Table(name = "User")
 public class User {
     public User() {
     }
@@ -20,13 +23,23 @@ public class User {
         setPassword(password);
 
     }
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "password")
     private String password;
+    @Column(name="realname")
     private String realname;
+    @Enumerated(EnumType.STRING)
+    @Column(name="role")
     private Role role;
+    @Column(name="email")
     private String email;
 
+
+
+    @OneToMany(mappedBy = "buyer")
+    private List<Product> userProducts = new ArrayList<Product>();
     public String getEmail() {
         return email;
     }
@@ -95,4 +108,11 @@ public class User {
         this.role = role;
     }
 
+    public List<Product> getUserProducts() {
+        return userProducts;
+    }
+
+    public void setUserProducts(List<Product> userProducts) {
+        this.userProducts = userProducts;
+    }
 }
