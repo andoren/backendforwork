@@ -4,7 +4,7 @@ import hu.misi.feladat.core.exceptions.InvalidPassword;
 import hu.misi.feladat.core.exceptions.InvalidRealnameException;
 import hu.misi.feladat.core.exceptions.InvalidUsernameException;
 import hu.misi.feladat.core.model.User;
-import hu.misi.feladat.service.dao.UserDao;
+import hu.misi.feladat.service.dao.IUserDao;
 import org.easymock.EasyMock;
 import org.easymock.Mock;
 import org.easymock.TestSubject;
@@ -15,7 +15,7 @@ import java.util.Collection;
 import static org.easymock.EasyMock.same;
 public class UserServiceTest {
     @Mock
-    private UserDao dao;
+    private IUserDao dao;
     @TestSubject
     private UserService service;
 
@@ -25,7 +25,7 @@ public class UserServiceTest {
     User userWithoutAnything;
     @Before
     public void init() throws InvalidUsernameException, InvalidEmailException, InvalidPassword, InvalidRealnameException {
-        dao = EasyMock.niceMock(UserDao.class);
+        dao = EasyMock.niceMock(IUserDao.class);
         this.service = new UserService(dao);
         exceptionUser = new User(10,"hibasuser","Hibás#2User","hibA 2020","hiba@gmail.com", Role.admin);
         goodUser = new User(10,"gooduser","Good2User#","hibA 2020","hiba@gmail.com", Role.admin);

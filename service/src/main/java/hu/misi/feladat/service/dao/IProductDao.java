@@ -5,7 +5,7 @@ import hu.misi.feladat.core.model.User;
 
 import java.util.Collection;
 
-public interface ProductDao {
+public interface IProductDao {
     Collection<Product> getProducts();
     Collection<Product> getProductsByUserId(User user);
     Collection<Product> getNotAuthorizedProducts();

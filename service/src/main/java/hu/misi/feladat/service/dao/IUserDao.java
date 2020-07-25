@@ -5,7 +5,7 @@ import hu.misi.feladat.core.model.User;
 
 import java.util.Collection;
 
-public interface UserDao {
+public interface IUserDao {
     Collection<User> getAllUsers();
     Collection<User> getUsersByRole(Role role);
     boolean modifyUser(User user);

@@ -3,16 +3,16 @@ package hu.misi.feladat.service.impl;
 import hu.misi.feladat.core.model.Role;
 import hu.misi.feladat.core.model.User;
 import hu.misi.feladat.core.service.IUserService;
-import hu.misi.feladat.service.dao.UserDao;
+import hu.misi.feladat.service.dao.IUserDao;
 
 import java.util.Collection;
 
 public class UserService implements IUserService {
-    public UserService(UserDao dao) {
+    public UserService(IUserDao dao) {
         this.dao = dao;
     }
 
-    private UserDao dao;
+    private IUserDao dao;
 
     public Collection<User> getAllUsers() {
         return dao.getAllUsers();

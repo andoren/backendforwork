@@ -3,14 +3,14 @@ package hu.misi.feladat.service.impl;
 import hu.misi.feladat.core.model.Product;
 import hu.misi.feladat.core.model.User;
 import hu.misi.feladat.core.service.IProductSerivce;
-import hu.misi.feladat.service.dao.ProductDao;
+import hu.misi.feladat.service.dao.IProductDao;
 
 import java.util.Collection;
 
 public class ProductService implements IProductSerivce {
-    private ProductDao dao;
+    private IProductDao dao;
 
-    public ProductService(ProductDao dao) {
+    public ProductService(IProductDao dao) {
         this.dao = dao;
     }
 
