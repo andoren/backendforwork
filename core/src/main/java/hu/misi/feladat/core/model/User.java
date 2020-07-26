@@ -5,6 +5,15 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
+@NamedQueries(
+        {
+                // AclEntries
+                @NamedQuery(
+                        name = "getusers",
+                        query = "select username,email,realname,role from User where role =:prole"
+                )
+        }
+)
 @Entity
 @Table(name = "User")
 public class User {
@@ -25,6 +34,7 @@ public class User {
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
     @Column(name = "password")
     private String password;
@@ -35,7 +45,8 @@ public class User {
     private Role role;
     @Column(name="email")
     private String email;
-
+    @Column(name="username")
+    private String username;
 
 
     @OneToMany(mappedBy = "buyer")
@@ -62,7 +73,7 @@ public class User {
     }
 
 
-    private String username;
+
 
     public String getUsername() {
         return username;
