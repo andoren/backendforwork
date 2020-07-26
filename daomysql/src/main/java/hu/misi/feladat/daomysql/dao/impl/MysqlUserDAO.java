@@ -25,14 +25,13 @@ public class MysqlUserDAO implements IUserDao {
 
     }
 
-    protected SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
     public Collection<User> getAllUsers() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         Query query = session.createQuery("from User");
-        ArrayList<User> users = (ArrayList<User>)query.getResultList();
-        return users;
+        return query.getResultList();
     }
 
     public Collection<User> getUsersByRole(Role role) {
@@ -42,15 +41,15 @@ public class MysqlUserDAO implements IUserDao {
         CriteriaQuery<User> criteria = builder.createQuery(User.class);
         Root<User> userRoot = criteria.from(User.class);
         Predicate likeRestriction = builder.and(
-                builder.equal(userRoot.get("role"),role.name())
+                builder.equal(userRoot.get("role"),role)
         );
 
         criteria.select(userRoot).where(likeRestriction);
 
         TypedQuery<User> query = session.createQuery(criteria);
-        List users = query.getResultList();
+
         session.close();
-        return users;
+        return query.getResultList();
     }
 
     public boolean modifyUser(User user) {
@@ -91,5 +90,22 @@ public class MysqlUserDAO implements IUserDao {
         session.close();
         return true;
     }
+
+
+    public boolean logIn(String username, String password) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        User user ;
+        user = (User) session.createQuery("FROM User U WHERE U.username = :userName and U.password = :passWord").setParameter("userName", username).setParameter("passWord",password)
+                .uniqueResult();
+
+        if (user != null) {
+            return true;
+        }
+        return false;
+    }
+
+
+
 
 }

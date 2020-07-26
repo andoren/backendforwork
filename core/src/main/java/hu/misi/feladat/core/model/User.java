@@ -33,7 +33,7 @@ public class User {
     private String password;
     @Column(name="realname")
     private String realname;
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Column(name="role")
     private Role role;
     @Column(name="email")
@@ -51,7 +51,7 @@ public class User {
     }
 
     @OneToMany(mappedBy = "owner")
-    private List<Product> products = new ArrayList<Product>();
+    private List<Product> products = new ArrayList<>();
 
     public String getEmail() {
         return email;

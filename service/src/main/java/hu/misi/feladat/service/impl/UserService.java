@@ -37,4 +37,10 @@ public class UserService implements IUserService {
     public boolean deleteUserById(int id) {
         return dao.deleteUserById(id);
     }
+
+    public boolean logIn(String username, String password) {
+        return dao.logIn(username,password);
+    }
+
+
 }

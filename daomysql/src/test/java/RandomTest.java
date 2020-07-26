@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class RandomTest {
-    MysqlUserDAO dao;
+    private MysqlUserDAO dao;
     @Before
     public void init(){
          dao= new MysqlUserDAO();
@@ -28,7 +28,7 @@ public class RandomTest {
         user.setRealname("Pekár Mihály");
         user.setRole(Role.admin);
         User newuser = dao.addUser(user);
-        user.getEmail();
+
     }
     @Test
     public void getUserTest(){
@@ -40,12 +40,12 @@ public class RandomTest {
         User user = dao.getUserById(1);
         user.setEmail("mpekar5@gmail.com");
         boolean result = dao.modifyUser(user);
-        Assert.assertEquals(true,result);
+        Assert.assertTrue(result);
     }
     //@Test
     public void deleteUser(){
         boolean result = dao.deleteUserById(4);
-        Assert.assertEquals(true,result);
+        Assert.assertTrue(result);
     }
     @Test
     public void getUsers(){
@@ -63,5 +63,10 @@ public class RandomTest {
             System.out.println(user.getUsername());
         }
 
+    }
+    @Test
+    public void logIn(){
+        boolean success = dao.logIn("valami2","sdadasd#");
+        System.out.println(success);
     }
 }
