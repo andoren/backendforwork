@@ -27,6 +27,10 @@ public class ProductService implements IProductSerivce {
         return dao.getNotAuthorizedProducts();
     }
 
+    public Collection<Product> getAuthorizedProducts() {
+        return dao.getAuthorizedProducts();
+    }
+
     public Product getProductById(int id) {
         return dao.getProductById(id);
     }

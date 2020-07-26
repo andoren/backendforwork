@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="Product")
+@Table(name="product")
 public class Product {
     public Product() {
 
@@ -46,19 +46,34 @@ public class Product {
     @Column(name = "imagepath")
     private String imagepath;
 
-    public User getBuyer() {
-        return buyer;
+    public Boolean getIssold() {
+        return issold;
     }
 
-    public void setBuyer(User buyer) {
-        this.buyer = buyer;
+    public void setIssold(Boolean issold) {
+        this.issold = issold;
+    }
+
+    public Boolean getIsaccapted() {
+        return isaccapted;
+    }
+
+    public void setIsaccapted(Boolean isaccapted) {
+        this.isaccapted = isaccapted;
+    }
+
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner")
     private User owner;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "buyer")
-    private User buyer;
     @Column(name = "created_date")
     private LocalDate created_date;
     @Column(name = "sold_date")

@@ -9,6 +9,7 @@ public interface IProductDao {
     Collection<Product> getProducts();
     Collection<Product> getProductsByUserId(User user);
     Collection<Product> getNotAuthorizedProducts();
+    Collection<Product> getAuthorizedProducts();
     Product getProductById(int id);
     Product addProduct(Product newProduct, int userId);
     boolean modifyProduct(Product product);

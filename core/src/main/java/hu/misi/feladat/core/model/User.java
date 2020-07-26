@@ -3,17 +3,10 @@ package hu.misi.feladat.core.model;
 import hu.misi.feladat.core.exceptions.*;
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.regex.Pattern;
-@NamedQueries(
-        {
-                // AclEntries
-                @NamedQuery(
-                        name = "getusers",
-                        query = "select username,email,realname,role from User where role =:prole"
-                )
-        }
-)
+
 @Entity
 @Table(name = "User")
 public class User {
@@ -49,8 +42,17 @@ public class User {
     private String username;
 
 
-    @OneToMany(mappedBy = "buyer")
-    private List<Product> userProducts = new ArrayList<Product>();
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    @OneToMany(mappedBy = "owner")
+    private List<Product> products = new ArrayList<Product>();
+
     public String getEmail() {
         return email;
     }
@@ -71,9 +73,6 @@ public class User {
     public void setId(Integer id) {
         this.id = id;
     }
-
-
-
 
     public String getUsername() {
         return username;
@@ -119,11 +118,5 @@ public class User {
         this.role = role;
     }
 
-    public List<Product> getUserProducts() {
-        return userProducts;
-    }
 
-    public void setUserProducts(List<Product> userProducts) {
-        this.userProducts = userProducts;
-    }
 }
