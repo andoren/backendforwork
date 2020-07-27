@@ -14,7 +14,7 @@ public class RandomProductTests {
 
     MysqlProductDao dao = new MysqlProductDao();
     MysqlUserDAO userDAO = new MysqlUserDAO();
-    @Test
+
     public void getProducts(){
         Collection<Product> products = dao.getProducts();
         for (Product product:products
@@ -22,7 +22,7 @@ public class RandomProductTests {
             System.out.println(product.getName());
         }
     }
-    @Test
+
     public void getProductsAuth(){
         Collection<Product> products = dao.getAuthorizedProducts();
         for (Product product:products
@@ -30,7 +30,7 @@ public class RandomProductTests {
             System.out.println(product.getName());
         }
     }
-    @Test
+
     public void getProductsNotAuth(){
         Collection<Product> products = dao.getNotAuthorizedProducts();
         for (Product product:products
@@ -50,7 +50,7 @@ public class RandomProductTests {
         newProduct.setPrice(10000);
         Product meow = dao.addProduct(newProduct,2);
     }
-    @Test
+
     public void getUserProducts(){
         User user = userDAO.getUserById(2);
         Collection<Product> products = dao.getProductsByUserId(user);

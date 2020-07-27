@@ -5,9 +5,11 @@ import hu.misi.feladat.core.model.User;
 import hu.misi.feladat.core.service.IUserService;
 import hu.misi.feladat.service.dao.IUserDao;
 
+import javax.inject.Inject;
 import java.util.Collection;
 
 public class UserService implements IUserService {
+    @Inject
     public UserService(IUserDao dao) {
         this.dao = dao;
     }

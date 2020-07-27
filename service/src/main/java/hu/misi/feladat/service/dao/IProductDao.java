@@ -3,8 +3,9 @@ package hu.misi.feladat.service.dao;
 import hu.misi.feladat.core.model.Product;
 import hu.misi.feladat.core.model.User;
 
+import javax.ejb.Local;
 import java.util.Collection;
-
+@Local
 public interface IProductDao {
     Collection<Product> getProducts();
     Collection<Product> getProductsByUserId(User user);

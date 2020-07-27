@@ -5,11 +5,12 @@ import hu.misi.feladat.core.model.User;
 import hu.misi.feladat.core.service.IProductSerivce;
 import hu.misi.feladat.service.dao.IProductDao;
 
+import javax.inject.Inject;
 import java.util.Collection;
 
 public class ProductService implements IProductSerivce {
     private IProductDao dao;
-
+    @Inject
     public ProductService(IProductDao dao) {
         this.dao = dao;
     }

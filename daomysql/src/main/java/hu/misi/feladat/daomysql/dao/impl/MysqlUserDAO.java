@@ -7,12 +7,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+
+import javax.ejb.Stateless;
 import javax.persistence.*;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
+@Stateless
 public class MysqlUserDAO implements IUserDao {
     public MysqlUserDAO(){
         Configuration configuration = new Configuration().configure();

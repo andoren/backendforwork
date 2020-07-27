@@ -14,11 +14,11 @@ import java.util.List;
 
 public class RandomTest {
     private MysqlUserDAO dao;
-    @Before
+
     public void init(){
          dao= new MysqlUserDAO();
     }
-    //@Test
+
     public void addUserTest() throws InvalidUsernameException, InvalidRealnameException, InvalidPassword, InvalidEmailException {
 
         User user = new User();
@@ -30,12 +30,12 @@ public class RandomTest {
         User newuser = dao.addUser(user);
 
     }
-    @Test
+
     public void getUserTest(){
         User user = dao.getUserById(1);
         System.out.println(user.getUsername());
     }
-    @Test
+
     public void ModifyUser() throws InvalidEmailException {
         User user = dao.getUserById(1);
         user.setEmail("mpekar5@gmail.com");
@@ -47,7 +47,7 @@ public class RandomTest {
         boolean result = dao.deleteUserById(4);
         Assert.assertTrue(result);
     }
-    @Test
+
     public void getUsers(){
         Collection<User> users = dao.getAllUsers();
         for (User user:users
@@ -55,7 +55,7 @@ public class RandomTest {
             System.out.println(user.getRole().name());
         }
     }
-    @Test
+
     public void getUsersByRole(){
         Collection<User> users = dao.getUsersByRole(Role.user);
         for (User user:users
@@ -64,7 +64,7 @@ public class RandomTest {
         }
 
     }
-    @Test
+
     public void logIn(){
         boolean success = dao.logIn("valami2","sdadasd#");
         System.out.println(success);
